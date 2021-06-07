@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <?php require $path . '/view/shared/_nav.php' ?>
+    <?php require dirname(__DIR__) . '/view/shared/_nav.php' ?>
     <div class="container">
         <?= $content ?>
     </div>
