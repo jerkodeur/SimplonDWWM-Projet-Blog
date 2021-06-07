@@ -11,7 +11,7 @@ try {
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
             ];
-            $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '', $options);
+            $db = new PDO('mysql:host=localhost;dbname=simplon_blog', 'root', '', $options);
         } catch (PDOException $e) {
             print "Erreur !: " . $e->getMessage() . "<br/>";
             die();
