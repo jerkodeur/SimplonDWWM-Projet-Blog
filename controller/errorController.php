@@ -1,6 +1,6 @@
 <?php
 
-function throwError(Exception $e)
+function showError(Exception $e)
 {
     ob_start();
     require dirname(__DIR__) . '/view/error/error' . $e->getMessage() . '.php';

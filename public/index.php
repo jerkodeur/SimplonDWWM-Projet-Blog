@@ -18,5 +18,5 @@ try {
     }
 } catch (Exception $e) {
     require $path . '/controller/errorController.php';
-    throwError($e);
+    showError($e);
 }
