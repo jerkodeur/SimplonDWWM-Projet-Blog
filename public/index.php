@@ -1,6 +1,7 @@
 <?php
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'post.home';
+$path = dirname(__DIR__);
 
 ob_start();
 try {
@@ -22,7 +23,7 @@ try {
         $posts = $request->fetchAll();
         $request->closeCursor();
 
-        require 'home.php';
+        require $path . '/view/post/home.php';
     } elseif ($page === 'post.show') {
 
         try {
@@ -30,7 +31,7 @@ try {
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
             ];
-            $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '', $options);
+            $db = new PDO('mysql:host=localhost;dbname=simplon_blog', 'root', '', $options);
         } catch (PDOException $e) {
             print "Erreur !: " . $e->getMessage() . "<br/>";
             die();
@@ -42,15 +43,15 @@ try {
         $post = $request->fetch();
         $request->closeCursor();
 
-        require 'show.php';
+        require $path . '/view/post/show.php';
     } elseif ($page === 'user.connect') {
-        require 'connectionForm.php';
+        require $path . '/view/user/connectionForm.php';
     } else {
         throw new Exception('404');
     }
 } catch (Exception $e) {
-    require 'error404.php';
+    require $path . '/view/error/' . $e->getMessage() . '.php';
 }
 $content = ob_get_clean();
 
-require 'base.php';
+require $path . '/view/base.php';
